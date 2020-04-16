@@ -294,7 +294,7 @@ class ParameterizedTest(unittest.TestCase):
         self.test1.kern.rbf.link_parameter(Param("NEW", np.random.rand(2), transformations.NegativeLogexp()), 1)
         self.assertListEqual(self.test1.constraints[transformations.NegativeLogexp()].tolist(), list(range(self.param.size+1, self.param.size+1 + 2)))
         self.assertListEqual(self.test1.constraints[transformations.Logistic(0,1)].tolist(), list(range(self.param.size)))
-        self.assertListEqual(self.test1.constraints[transformations.Logexp(0,1)].tolist(), np.r_[50, 53:55].tolist())
+        self.assertListEqual(self.test1.constraints[transformations.Logexp()].tolist(), np.r_[50, 53:55].tolist())
 
     def test_checkgrad_hierarchy_error(self):
         self.assertRaises(HierarchyError, self.test1.checkgrad)
