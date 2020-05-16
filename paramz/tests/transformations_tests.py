@@ -114,5 +114,27 @@ class TransformationsTest(unittest.TestCase):
         self._test_callf_BOUNDED(transf.Logistic)
 
 
+    def _test_callfinv(self, t, p):
+        self.assertAlmostEqual(t.f(t.finv(p)), p, delta=5e-16)
+
+    def test_callfinv_Logexp(self):
+        self._test_callfinv(transf.Logexp(), 1.234)
+
+    def test_callfinv_Exponent(self):
+        self._test_callfinv(transf.Exponent(), 1.234)
+
+    def test_callfinv_Square(self):
+        self._test_callfinv(transf.Square(), 1.234)
+
+    def test_callfinv_NegativeExponent(self):
+        self._test_callfinv(transf.NegativeExponent(), -2.345)
+
+    def test_callfinv_NegativeLogexp(self):
+        self._test_callfinv(transf.NegativeLogexp(), -2.345)
+
+    def test_callfinv_Logistic(self):
+        self._test_callfinv(transf.Logistic(5., 10.), 6.666)
+
+
 if __name__ == "__main__":
     unittest.main()
